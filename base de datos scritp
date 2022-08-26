@@ -1,0 +1,230 @@
+USE [master]
+GO
+/****** Object:  Database [proyectopos-database]    Script Date: 8/25/2022 8:21:21 PM ******/
+CREATE DATABASE [proyectopos-database]
+ CONTAINMENT = NONE
+ ON  PRIMARY 
+( NAME = N'proyectopos-database_Data', FILENAME = N'c:\dzsqls\proyectopos-database.mdf' , SIZE = 8192KB , MAXSIZE = 30720KB , FILEGROWTH = 22528KB )
+ LOG ON 
+( NAME = N'proyectopos-database_Logs', FILENAME = N'c:\dzsqls\proyectopos-database.ldf' , SIZE = 8192KB , MAXSIZE = 30720KB , FILEGROWTH = 22528KB )
+ WITH CATALOG_COLLATION = DATABASE_DEFAULT
+GO
+ALTER DATABASE [proyectopos-database] SET COMPATIBILITY_LEVEL = 150
+GO
+IF (1 = FULLTEXTSERVICEPROPERTY('IsFullTextInstalled'))
+begin
+EXEC [proyectopos-database].[dbo].[sp_fulltext_database] @action = 'enable'
+end
+GO
+ALTER DATABASE [proyectopos-database] SET ANSI_NULL_DEFAULT OFF 
+GO
+ALTER DATABASE [proyectopos-database] SET ANSI_NULLS OFF 
+GO
+ALTER DATABASE [proyectopos-database] SET ANSI_PADDING OFF 
+GO
+ALTER DATABASE [proyectopos-database] SET ANSI_WARNINGS OFF 
+GO
+ALTER DATABASE [proyectopos-database] SET ARITHABORT OFF 
+GO
+ALTER DATABASE [proyectopos-database] SET AUTO_CLOSE OFF 
+GO
+ALTER DATABASE [proyectopos-database] SET AUTO_SHRINK OFF 
+GO
+ALTER DATABASE [proyectopos-database] SET AUTO_UPDATE_STATISTICS ON 
+GO
+ALTER DATABASE [proyectopos-database] SET CURSOR_CLOSE_ON_COMMIT OFF 
+GO
+ALTER DATABASE [proyectopos-database] SET CURSOR_DEFAULT  GLOBAL 
+GO
+ALTER DATABASE [proyectopos-database] SET CONCAT_NULL_YIELDS_NULL OFF 
+GO
+ALTER DATABASE [proyectopos-database] SET NUMERIC_ROUNDABORT OFF 
+GO
+ALTER DATABASE [proyectopos-database] SET QUOTED_IDENTIFIER OFF 
+GO
+ALTER DATABASE [proyectopos-database] SET RECURSIVE_TRIGGERS OFF 
+GO
+ALTER DATABASE [proyectopos-database] SET  ENABLE_BROKER 
+GO
+ALTER DATABASE [proyectopos-database] SET AUTO_UPDATE_STATISTICS_ASYNC OFF 
+GO
+ALTER DATABASE [proyectopos-database] SET DATE_CORRELATION_OPTIMIZATION OFF 
+GO
+ALTER DATABASE [proyectopos-database] SET TRUSTWORTHY OFF 
+GO
+ALTER DATABASE [proyectopos-database] SET ALLOW_SNAPSHOT_ISOLATION OFF 
+GO
+ALTER DATABASE [proyectopos-database] SET PARAMETERIZATION SIMPLE 
+GO
+ALTER DATABASE [proyectopos-database] SET READ_COMMITTED_SNAPSHOT OFF 
+GO
+ALTER DATABASE [proyectopos-database] SET HONOR_BROKER_PRIORITY OFF 
+GO
+ALTER DATABASE [proyectopos-database] SET RECOVERY SIMPLE 
+GO
+ALTER DATABASE [proyectopos-database] SET  MULTI_USER 
+GO
+ALTER DATABASE [proyectopos-database] SET PAGE_VERIFY CHECKSUM  
+GO
+ALTER DATABASE [proyectopos-database] SET DB_CHAINING OFF 
+GO
+ALTER DATABASE [proyectopos-database] SET FILESTREAM( NON_TRANSACTED_ACCESS = OFF ) 
+GO
+ALTER DATABASE [proyectopos-database] SET TARGET_RECOVERY_TIME = 60 SECONDS 
+GO
+ALTER DATABASE [proyectopos-database] SET DELAYED_DURABILITY = DISABLED 
+GO
+ALTER DATABASE [proyectopos-database] SET ACCELERATED_DATABASE_RECOVERY = OFF  
+GO
+ALTER DATABASE [proyectopos-database] SET QUERY_STORE = OFF
+GO
+USE [proyectopos-database]
+GO
+/****** Object:  Table [dbo].[detalles]    Script Date: 8/25/2022 8:21:23 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[detalles](
+	[id] [int] IDENTITY(1,1) NOT NULL,
+	[analisis_id] [int] NULL,
+	[item_id] [int] NULL,
+	[qty] [bigint] NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Invoices]    Script Date: 8/25/2022 8:21:23 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Invoices](
+	[id] [int] IDENTITY(1,1) NOT NULL,
+	[subtotal] [float] NOT NULL,
+	[total] [float] NOT NULL,
+	[invoiceDate] [datetime] NOT NULL,
+	[nombre] [varchar](max) NULL,
+ CONSTRAINT [PK__Invoices__3213E83FE5B197B8] PRIMARY KEY CLUSTERED 
+(
+	[id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Items]    Script Date: 8/25/2022 8:21:23 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Items](
+	[id] [int] IDENTITY(1010,1) NOT NULL,
+	[itemName] [varchar](50) NULL,
+	[unidad] [nvarchar](50) NULL,
+	[price] [decimal](18, 0) NULL,
+	[descripcion] [varchar](max) NULL,
+	[familia] [varchar](max) NULL,
+	[codSap] [int] NULL,
+ CONSTRAINT [PK__Items__3213E83F64C25FA3] PRIMARY KEY CLUSTERED 
+(
+	[id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Roles]    Script Date: 8/25/2022 8:21:23 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Roles](
+	[id] [int] NOT NULL,
+	[role] [varchar](50) NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Users]    Script Date: 8/25/2022 8:21:23 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Users](
+	[id] [int] IDENTITY(1,1) NOT NULL,
+	[userName] [varchar](50) NULL,
+	[mail] [varchar](50) NULL,
+	[password] [varchar](50) NULL,
+	[role] [int] NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+ALTER TABLE [dbo].[detalles]  WITH CHECK ADD FOREIGN KEY([analisis_id])
+REFERENCES [dbo].[Invoices] ([id])
+GO
+ALTER TABLE [dbo].[detalles]  WITH CHECK ADD  CONSTRAINT [FK__detalles__item_i__10566F31] FOREIGN KEY([item_id])
+REFERENCES [dbo].[Items] ([id])
+GO
+ALTER TABLE [dbo].[detalles] CHECK CONSTRAINT [FK__detalles__item_i__10566F31]
+GO
+ALTER TABLE [dbo].[Users]  WITH CHECK ADD FOREIGN KEY([role])
+REFERENCES [dbo].[Roles] ([id])
+GO
+/****** Object:  StoredProcedure [dbo].[getDetalle]    Script Date: 8/25/2022 8:21:23 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE procedure [dbo].[getDetalle] @AnalisisID int
+AS
+Select I.id, I.itemName, D.qty, I.price, I.unidad, I.descripcion, I.familia
+from detalles D join Items I on I.id = D.item_id where analisis_id = @AnalisisID
+GO
+/****** Object:  StoredProcedure [dbo].[SP_ValAdmin]    Script Date: 8/25/2022 8:21:23 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+-----------------------------------------------------------------------------
+Create procedure [dbo].[SP_ValAdmin]
+@varUserName varchar(50),
+@varPassword varchar(50)
+AS 
+Begin
+	if exists(select userName from Users where userName = @varUserName and password = @varPassword and role = 1)
+	return 1
+	else if exists(select userName from Users where userName = @varUserName and password = @varPassword and role = 2)
+	return 2
+End
+----------------------------------------------------------------------------
+GO
+/****** Object:  StoredProcedure [dbo].[SP_ValUser]    Script Date: 8/25/2022 8:21:23 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+Create procedure [dbo].[SP_ValUser]
+@varUserName varchar(50),
+@varPassword varchar(50)
+AS
+Begin	
+	if exists(select userName from Users where userName = @varUserName and password = @varPassword)
+	return 1
+	
+	Else 
+	return 0
+End
+
+
+
+
+
+GO
+USE [master]
+GO
+ALTER DATABASE [proyectopos-database] SET  READ_WRITE 
+GO
