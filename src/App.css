@@ -1,0 +1,107 @@
+/* 
+Developed by Luis Diplan All Rights Reserved 2022
+*/
+.App {
+  text-align: center;
+}
+
+
+/*#refresh{
+  margin-left:87.5%;
+   display: inline-block;
+  }
+*/
+
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+.modal-content{
+  width: 190% !important;
+  left: -20% !important;
+}
+.foot-card{
+  position: absolute;
+}
+
+.foot-card .input-control{
+  float: right;
+}
+
+.fo
+.input-item{
+  grid-column: 1/13;
+}
+.invoice-table{
+  width: 100% !important;
+}
+.btn-circle.btn-sm {
+  width: 30px;
+  height: 30px;
+  padding: 6px 0px;
+  border-radius: 15px;
+  font-size: 8px;
+  text-align: center;
+}
+.btn-circle.btn-md {
+  width: 50px;
+  height: 50px;
+  padding: 7px 10px;
+  border-radius: 25px;
+  font-size: 10px;
+  text-align: center;
+}
+.btn-circle.btn-xl {
+  width: 70px;
+  height: 70px;
+  padding: 10px 16px;
+  border-radius: 35px;
+  font-size: 12px;
+  text-align: center;
+}
+.input-qty{
+  grid-column: 14/17;
+}
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+.nav-item i{
+  text-align: left;
+  padding: 0 !important;
+  margin-right: 2px;
+  padding-left: 1.5px;
+}
+.nav-item .fa-file-invoice-dollar{
+  margin-right: 8.5px !important;
+}
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+#div {
+  width: 50%;
+  margin-left: auto;
+  margin-right: auto;
+}

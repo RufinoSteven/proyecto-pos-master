@@ -1,0 +1,29 @@
+/* 
+Developed by Luis Diplan All Rights Reserved 2022
+*/
+.login {
+    min-height: 100vh;
+  }
+  .main-container-login{
+    background-color: white;
+    
+    
+  }
+  .bg-image {
+    background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Claro.svg/900px-Claro.svg.png');
+    background-size:cover;
+    background-position: center;
+   
+    
+  }
+  
+  .login-heading {
+    font-weight: 300;
+    color: red;
+  }
+  
+  .btn-login {
+    font-size: 0.9rem;
+    letter-spacing: 0.05rem;
+    padding: 0.75rem 1rem;
+  }
